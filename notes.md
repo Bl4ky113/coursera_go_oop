@@ -75,3 +75,30 @@ But you better plan ahead that if you passed or used somestuff in the call that 
 defer call, they won't affect the defer call. 
 Meaining that the defer call copies or creates the context of the scope when the defer function was created
 and then making the function call with that same copy.
+
+## OOP in Go
+
+Go officialy doesn't have an Object Oriented Programming, 
+but we can recreate the objects with properties and methods with Parcial Encapsulation.
+
+This is allowed thanks to functions beeing able to receive a variable by a Receiver, 
+which is defined after the func keyword and before the name of the function. 
+This will allow us to use the Receiver just like a parameter inside the function, but we 
+have a complete different syntax for calling the function:
+
+func (bar type) foo () {
+    ...
+}
+
+barElement.foo()
+
+This syntax is technically the same as any other OOP language. But the Receiver, since it behaves like a parameter,
+there might be problemns with passing it as a pointer or a value, either way we can pass it by pointer by just changing the 
+type in the definition.
+
+One main problemn is that, when passed as value, we can't rewrite the content of the receiver outside the function scope.
+The derreference and reference of the pointers while making the call or inside the function is not needed,
+Golang will do it for us automatically, meaning that we can jus tuse them as a normal variable.
+
+We can encapsulate data as private by just using the mixedCaps notation in Golang, won't be available outside the file, 
+but inside is free to use. Also MixedCaps means that the method, attribute or anything is Public for everything.

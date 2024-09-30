@@ -7,7 +7,9 @@ End:
 Sessions:
 - 09/11/2024 I hope that I can finish this one as fast as the other.
 - 09/18/2024
-- 09/29/2024 It wasn't, but now will be
+- 09/28/2024 It wasn't, but now will be
+- 09/29/2024
+- 09/30/2024
 
 ## Functions basics 
 
@@ -102,3 +104,71 @@ Golang will do it for us automatically, meaning that we can jus tuse them as a n
 
 We can encapsulate data as private by just using the mixedCaps notation in Golang, won't be available outside the file, 
 but inside is free to use. Also MixedCaps means that the method, attribute or anything is Public for everything.
+
+## Polymorphism
+
+We want to implement multiple classes or structs with a same method but with different execution, like Speak, in a normal OOP language we could 
+create a class and make some subclasses by inheritance and then overwritting the method if needed.
+
+In Golang, since we don't have inheritance, we got to use interfaces. These are defined just like structs, the main thing is that we don't
+define attributes but methods. 
+
+type foo interface {
+    bar(param1 type, param2 type, ...) rtnType
+    ...
+}
+
+And if we define a struct in the same file and define each method inside the interface the compiler will automatically 
+know that the struct is using the interface.
+
+The curious thing is that we can create a variable with the type of the interface. 
+This will allow us to define another variable which is an struct implementing the interface 
+and asign that one to the interface var. 
+
+Now, if we only used the interface var, it would do nothing at all, and trying to call any method, attribute or anything at all
+it would do a runtime error and panic.
+
+The main usage of this interfaces is in the case that we have a lot of somewhat same structures and we need to implement 
+a method on every single one. Using only structs and methods, we would have to rewrite every single method and in most 
+cases almost the same way for every single struct. 
+
+But with interfaces, we can define an interface for all thoose structs and then, like structs, we can define a 
+method for the objects or structs that implement that interface, by passing to a function a Receiver with the 
+interface type. Mainly in this interfaces we might want to check first if the passed struct is NIL in case 
+that we passed only an empty interface reference and not a struct that implements it. 
+
+Also in this interfaces methods we might want to differenciate types in the methods. We can do it by 
+accessing the type of the variable by using:
+
+foo.(type)
+
+This works with ANY type, so we can use it in a switch statement in order to do stuff acordingly:
+
+switch varType := var.(type) {
+    case foo:
+        ...
+    ...
+    default:
+        ...
+}
+
+We can also the interface methods to make a method for all types and structs by just defining the Receiver as an 
+empty interface, or one without methods, this might be usefull mainly for logging and debuging stuff.
+
+## Error handling 
+
+Up until now you might have noticed that we event havent touched the error handling in Golang, 
+this is because there's next to none, but a little bit of the stuff that we have learnt up until now
+we can use it to implement a error handling system.
+
+Mainly, in almost every function there's the normal return value, if there's any, and 
+the error return. Which tell us if there has been an error while executing the function.
+This also mean that if we didn't have any error, the return value of the error will be NIL.
+Generally these errors are made with the interface error:
+
+type error interface {
+    Error() string
+}
+
+Then the basic error handling would be checking if the error is NIL, and if it isn't is, 
+we have to handle it acordingly, mainly only printing it and see what the hell happend.

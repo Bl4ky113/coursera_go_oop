@@ -2,7 +2,7 @@
 # By University of California, Irvine
 
 Start: 09/11/2024
-End:
+End: 10/01/2024
 
 Sessions:
 - 09/11/2024 I hope that I can finish this one as fast as the other.
@@ -172,3 +172,7 @@ type error interface {
 
 Then the basic error handling would be checking if the error is NIL, and if it isn't is, 
 we have to handle it acordingly, mainly only printing it and see what the hell happend.
+
+## Final
+
+It was a good course, nothing more to say

@@ -176,3 +176,18 @@ we have to handle it acordingly, mainly only printing it and see what the hell h
 ## Final
 
 It was a good course, nothing more to say
+
+## Composition (Inheritance) in Golang
+
+Turns out that Inheritance by Composition does exist in Golang. 
+Although it's different as always in Golang. The syntax is::
+
+type struct foo { ... }
+
+type struct bar {
+    ...
+    foo
+}
+
+This is that bar will expand foo, or foo composes bar struct. 
+Meaning that we can access all fields of foo in bar, it's methods and have the same type of interface.
